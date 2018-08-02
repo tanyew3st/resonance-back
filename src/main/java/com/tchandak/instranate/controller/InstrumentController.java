@@ -35,6 +35,11 @@ public class InstrumentController {
         return instrument.getKey();
     }
 
+    @RequestMapping(value = "/api/hello", method = RequestMethod.GET)
+    public String sayHello() {
+        return "hello world";
+    }
+
     @RequestMapping(value = "/api/instrument/{id}", method = RequestMethod.GET)
     public Instrument getInstrument(@PathVariable(value = "id") Integer id) {
         System.out.println("Hitting the endpoint at " + id);

@@ -22,6 +22,7 @@ public class InstrumentController {
     @Autowired
     private InstrumentService instrumentService;
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/api/instrument")
     public Integer addInstrument(@RequestBody Instrument instrument) {
         Random random = new Random();
@@ -35,11 +36,13 @@ public class InstrumentController {
         return instrument.getKey();
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/api/hello", method = RequestMethod.GET)
     public String sayHello() {
         return "hello world";
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/api/instrument/{id}", method = RequestMethod.GET)
     public Instrument getInstrument(@PathVariable(value = "id") Integer id) {
         System.out.println("Hitting the endpoint at " + id);
@@ -47,11 +50,13 @@ public class InstrumentController {
         return instrumentById;
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.DELETE, value = "/api/instrument/{id}")
     public void deleteInstrument(@PathVariable Integer id) {
         instrumentService.deleteInstrument(id);
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/api/instrument/money/{id}/{money}")
     public Integer addMoneyToRental(@PathVariable Integer id, @PathVariable Integer money) {
         Instrument instrument = getInstrument(id);
@@ -64,6 +69,7 @@ public class InstrumentController {
         return instrument.getAmountPaid();
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/api/instrument/money/{id}/set")
     public void setAmountPaid(@PathVariable Integer id) {
         Instrument instrument = getInstrument(id);
@@ -71,6 +77,7 @@ public class InstrumentController {
     }
 
 
+    @CrossOrigin
     @RequestMapping(value = "/api/instrument")
     public List<Instrument> getAllInstruments() {
         return instrumentService.getAllInstruments();
@@ -81,6 +88,7 @@ public class InstrumentController {
         return instrumentService.getInstrumentById(id);
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/api/school/{id}/instruments")
     public List<Instrument> getAllInstrumentsFromSchool(@PathVariable(value = "id") Integer id) {
         if (getInstrumentsBySchoolId(id) != null) {
@@ -91,6 +99,7 @@ public class InstrumentController {
         }
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, value = "/api/instrument/{id}/{status}")
     public void updateInstrumentStatus(@PathVariable Integer id, @PathVariable String status) {
         Instrument instrument = getInstrument(id);
@@ -105,6 +114,7 @@ public class InstrumentController {
 
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, value = "/api/instrument/{id}")
     public void updateInstrument(@RequestBody Instrument instrument, @PathVariable Integer id) {
         instrumentService.updateInstrument(id, instrument);

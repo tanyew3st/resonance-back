@@ -59,7 +59,27 @@ public class School {
     @Column(name = "district_id")
     private Integer districtId;
 
+    @Column(name = "terms")
+    private String terms;
 
+    @Column(name = "test")
+    private String test;
+
+    public String getTest() {
+        return test;
+    }
+
+    public void setTest(String test) {
+        this.test = test;
+    }
+
+    public String getTerms() {
+        return terms;
+    }
+
+    public void setTerms(String terms) {
+        this.terms = terms;
+    }
 
     public Integer getDistrictId() {
         return districtId;

@@ -38,6 +38,7 @@ public class LogController {
         return null;
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/api/log/{id}", method = RequestMethod.GET)
     public List<Log> getLog(@PathVariable(value = "id") Integer crazyKey) {
         Integer id;
@@ -48,6 +49,7 @@ public class LogController {
         return returnThis;
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/api/log/donor/{id}", method = RequestMethod.GET)
     public Log getDonorLog(@PathVariable(value = "id") Integer crazyKey) {
         Integer id;
@@ -66,6 +68,7 @@ public class LogController {
 
 
 
+    @CrossOrigin
     @RequestMapping(value = "/api/log")
     public List<Log> getAllLogs() {
         return logService.getAllLogs();
@@ -85,16 +88,19 @@ public class LogController {
         return returnList;
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/api/log")
     public void addLog(@RequestBody Log log) {
         logService.addLog(log);
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, value = "/api/log/{id}")
     public void updateLog(@RequestBody Log log, @PathVariable Integer id) {
         logService.updateLog(id, log);
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.DELETE, value = "/api/log/{id}")
     public void deleteLog(@PathVariable Integer id) {
         logService.deleteLog(id);

@@ -23,6 +23,7 @@ public class TypeController {
     @Autowired
     private SchoolService schoolService;
 
+    @CrossOrigin
     @RequestMapping(value = "/api/type/{id}", method = RequestMethod.GET)
     public Type getType(@PathVariable(value = "id") Integer id) {
         System.out.println("Hitting the endpoint at " + id);
@@ -31,6 +32,7 @@ public class TypeController {
     }
 
 
+    @CrossOrigin
     @RequestMapping(value = "/api/type")
     public List<Type> getAllTypes() {
         return typeService.getAllTypes();
@@ -40,28 +42,33 @@ public class TypeController {
         return typeService.getTypeById(id);
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/api/type")
     public Integer addType(@RequestBody Type type) {
         typeService.addType(type);
         return type.getId();
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, value = "/api/type/{id}")
     public void updateType(@RequestBody Type type, @PathVariable Integer id) {
         typeService.updateType(id, type);
     }
 
-//    @RequestMapping(method = RequestMethod.DELETE, value = "/api/type/{id}")
+// @CrossOrigin
+// @RequestMapping(method = RequestMethod.DELETE, value = "/api/type/{id}")
 //    public void deleteType(@PathVariable Integer id) {
 //        typeService.deleteType(id);
 //    }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/api/type/{schoolId}/{instrumentName}")
     public void everything(@PathVariable Integer schoolId, @PathVariable String instrumentName) {
         Type type = new Type(schoolId, instrumentName);
         typeService.addType(type);
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.DELETE, value = "/api/type/{schoolId}")
     public void deleteEverythingById(@PathVariable Integer schoolId) {
         deleteSchool(schoolId);
@@ -81,6 +88,7 @@ public class TypeController {
         }
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/api/type/get/{schoolId}/{instrument}")
     public boolean check(@PathVariable Integer schoolId, @PathVariable String instrument) {
         List<Type> everything = getAllTypes();

@@ -19,6 +19,7 @@ public class DistrictController {
     @Autowired
     private DistrictService districtService;
 
+    @CrossOrigin
     @RequestMapping(value = "/api/district/{id}", method = RequestMethod.GET)
     public District getDistrict(@PathVariable(value = "id") Integer id) {
         System.out.println("Hitting the endpoint at " + id);
@@ -27,6 +28,7 @@ public class DistrictController {
     }
 
 
+    @CrossOrigin
     @RequestMapping(value = "/api/district")
     public List<District> getAllDistricts() {
         return districtService.getAllDistricts();
@@ -36,21 +38,25 @@ public class DistrictController {
         return districtService.getDistrictById(id);
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/api/district")
     public void addDistrict(@RequestBody District district) {
         districtService.addDistrict(district);
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, value = "/api/district/{id}")
     public void updateDistrict(@RequestBody District district, @PathVariable Integer id) {
         districtService.updateDistrict(id, district);
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.DELETE, value = "/api/district/{id}")
     public void deleteDistrict(@PathVariable Integer id) {
         districtService.deleteDistrict(id);
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/api/district/usernames")
     public List<String> getUsernames() {
         List<String> usernames = new ArrayList<String>();
@@ -63,7 +69,8 @@ public class DistrictController {
         return usernames;
     }
 
-//    @RequestMapping(method = RequestMethod.GET, value = "/api/district/{id}/schools")
+// @CrossOrigin
+// @RequestMapping(method = RequestMethod.GET, value = "/api/district/{id}/schools")
 //    public List<School> getAllSchools(@PathVariable Integer id) {
 //        List<School> returnList = new ArrayList<>();
 //        List<School> allSchools = schoolController.getAllSchools();

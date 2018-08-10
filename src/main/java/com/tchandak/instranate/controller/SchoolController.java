@@ -20,6 +20,7 @@ public class SchoolController {
     @Autowired
     private SchoolService schoolService;
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/api/school")
     public void addSchool(@RequestBody School school) {
         schoolService.addSchool(school);
@@ -27,12 +28,14 @@ public class SchoolController {
 
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/api/school/message/{id}")
     public void updateMessage(@RequestBody String message, @PathVariable Integer id) {
         getSchoolById(id).setMessage(message);
         schoolService.updateSchool(id, getSchoolById(id));
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/api/school/usernames")
     public List<String> getUsernames() {
         List<String> usernames = new ArrayList<String>();
@@ -45,11 +48,13 @@ public class SchoolController {
         return usernames;
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, value = "/api/school/{id}")
     public void updateDonor(@RequestBody School school, @PathVariable Integer id) {
         schoolService.updateSchool(id, school);
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/api/school/{id}", method = RequestMethod.GET)
     public School getSchool(@PathVariable(value = "id") Integer id) {
         System.out.println("Hitting the endpoint at " + id);
@@ -57,6 +62,7 @@ public class SchoolController {
         return schoolById;
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/api/school/district/{id}", method = RequestMethod.GET)
     public List<School> getSchoolsByDistrict(@PathVariable(value = "id") Integer id) {
         List<School> allSchools = schoolService.getAllSchools();
@@ -70,7 +76,7 @@ public class SchoolController {
         return returnArray;
     }
 
-
+    @CrossOrigin
     @RequestMapping(value = "/api/school")
     public List<School> getAllSchools() {
         return schoolService.getAllSchools();

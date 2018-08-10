@@ -18,6 +18,7 @@ public class FacultyController {
     @Autowired
     private FacultyService facultyService;
 
+    @CrossOrigin
     @RequestMapping(value = "/api/faculty/{id}", method = RequestMethod.GET)
     public Faculty getFaculty(@PathVariable(value = "id") Integer id) {
         System.out.println("Hitting the endpoint at " + id);
@@ -26,6 +27,7 @@ public class FacultyController {
     }
 
 
+    @CrossOrigin
     @RequestMapping(value = "/api/faculty")
     public List<Faculty> getAllFaculty() {
         return facultyService.getAllFacultys();
@@ -35,21 +37,25 @@ public class FacultyController {
         return facultyService.getFacultyById(id);
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/api/faculty")
     public void addFaculty(@RequestBody Faculty faculty) {
         facultyService.addFaculty(faculty);
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, value = "/api/faculty/{id}")
     public void updateFaculty(@RequestBody Faculty faculty, @PathVariable Integer id) {
         facultyService.updateFaculty(id, faculty);
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.DELETE, value = "/api/faculty/{id}")
     public void deleteFaculty(@PathVariable Integer id) {
         facultyService.deleteFaculty(id);
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/api/faculty/get/{schoolId}")
     public List<Faculty> getAllFacultyBySchoolId(@PathVariable Integer schoolId) {
         List<Faculty> returnList = new ArrayList<Faculty>();

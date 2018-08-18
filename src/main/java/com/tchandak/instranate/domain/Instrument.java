@@ -75,6 +75,105 @@ public class Instrument {
     @Column(name = "information")
     private String information;
 
+    @Column(name = "partner_id")
+    private Integer partner;
+
+    @Column(name = "last_worked")
+    private Integer lastWorked;
+
+    @Column(name = "serial_number")
+    private String serialNumber;
+
+    @Column(name = "access_to_elevator")
+    private String accessToElevator;
+
+    @Column(name = "bench")
+    private String bench;
+
+    @Column(name = "keytop_condition")
+    private String keytopCondition;
+
+    @Column(name = "sticky_keys")
+    private String stickyKeys;
+
+    @Column(name = "broken_parts")
+    private String brokenParts;
+
+    @Column(name = "sticky_pedals")
+    private String stickyPedals;
+
+    public String getStickyPedals() {
+        return stickyPedals;
+    }
+
+    public void setStickyPedals(String stickyPedals) {
+        this.stickyPedals = stickyPedals;
+    }
+
+    public String getBrokenParts() {
+        return brokenParts;
+    }
+
+    public void setBrokenParts(String brokenParts) {
+        this.brokenParts = brokenParts;
+    }
+
+    public Integer getLastWorked() {
+        return lastWorked;
+    }
+
+    public void setLastWorked(Integer lastWorked) {
+        this.lastWorked = lastWorked;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public String getAccessToElevator() {
+        return accessToElevator;
+    }
+
+    public void setAccessToElevator(String accessToElevator) {
+        this.accessToElevator = accessToElevator;
+    }
+
+    public String getBench() {
+        return bench;
+    }
+
+    public void setBench(String bench) {
+        this.bench = bench;
+    }
+
+    public String getKeytopCondition() {
+        return keytopCondition;
+    }
+
+    public void setKeytopCondition(String keytopCondition) {
+        this.keytopCondition = keytopCondition;
+    }
+
+    public String getStickyKeys() {
+        return stickyKeys;
+    }
+
+    public void setStickyKeys(String stickyKeys) {
+        this.stickyKeys = stickyKeys;
+    }
+
+    public Integer getPartner() {
+        return partner;
+    }
+
+    public void setPartner(Integer partner) {
+        this.partner = partner;
+    }
+
     public String getInformation() {
         return information;
     }

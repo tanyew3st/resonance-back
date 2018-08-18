@@ -100,6 +100,21 @@ public class InstrumentController {
     }
 
     @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET, value = "/api/partner/{id}/instruments")
+    public List<Instrument> getAllInstrumentsFromPartner(@PathVariable(value = "id") Integer id) {
+
+        // efficiency - make it not call twice fix with more data.
+
+        if (getInstrumentsByPartnerId(id) != null) {
+            return getInstrumentsByPartnerId(id);
+        }
+        else {
+            return null;
+        }
+    }
+
+
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, value = "/api/instrument/{id}/{status}")
     public void updateInstrumentStatus(@PathVariable Integer id, @PathVariable String status) {
         Instrument instrument = getInstrument(id);
@@ -120,6 +135,22 @@ public class InstrumentController {
         instrumentService.updateInstrument(id, instrument);
     }
 
+
+    public List<Instrument> getInstrumentsByPartnerId(Integer partnerId) {
+
+        List<Instrument> allInstruments = new ArrayList<Instrument>();
+        allInstruments = instrumentService.getAllInstruments();
+
+        List<Instrument> returnList = new ArrayList<Instrument>();
+
+        for(int i = 0; i < allInstruments.size(); i++) {
+            if(allInstruments.get(i).getPartner() == partnerId) {
+                returnList.add(allInstruments.get(i));
+            }
+        }
+        System.out.println(returnList.size());
+        return returnList;
+    }
 
     public List<Instrument> getInstrumentsBySchoolId(Integer schoolId) {
 

@@ -51,13 +51,38 @@ public class Donor {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    //@Column(name = "instrument_id")
-    //private long instrumentId;
+    @Column(name = "home_address")
+    private String homeAddress;
 
-    //public long getInstrumentId() { return instrumentId; }
+    @Column(name = "donation")
+    private String donation;
 
-    //public void setInstrumentId(long instrumentId) { this.instrumentId = instrumentId; }
+    @Column(name = "story")
+    private String story;
 
+    public String getHomeAddress() {
+        return homeAddress;
+    }
+
+    public void setHomeAddress(String homeAddress) {
+        this.homeAddress = homeAddress;
+    }
+
+    public String getDonation() {
+        return donation;
+    }
+
+    public void setDonation(String donation) {
+        this.donation = donation;
+    }
+
+    public String getStory() {
+        return story;
+    }
+
+    public void setStory(String story) {
+        this.story = story;
+    }
 
     public String getPickUpAddress() {
         return pickUpAddress;

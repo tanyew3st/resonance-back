@@ -20,6 +20,28 @@ public class Image {
     @Column(name = "image")
     private byte[] image;
 
+    @Column(name = "instrument_id")
+    private Integer instrumentId;
+
+    @Column(name = "renter_id")
+    private Integer renterId;
+
+    public Integer getRenterId() {
+        return renterId;
+    }
+
+    public void setRenterId(Integer renterId) {
+        this.renterId = renterId;
+    }
+
+    public Integer getInstrumentId() {
+        return instrumentId;
+    }
+
+    public void setInstrumentId(Integer instrumentId) {
+        this.instrumentId = instrumentId;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -29,24 +29,41 @@ public class ImageController {
 
     private InstrumentController instrumentController;
 
-    public Integer getIdByCrazyKey(Integer crazyKey) {
-        List<Instrument> allInstruments = instrumentService.getAllInstruments();
+    @CrossOrigin
+    @RequestMapping(value = "/api/image/{id}", method = RequestMethod.GET)
+    public Image getImage(@PathVariable(value = "id") Integer id) {
+        return this.imageService.getImageById(id);
+    }
 
-        for(int i = 0; i < allInstruments.size(); i++) {
-            if (allInstruments.get(i).getKey().intValue() == crazyKey.intValue()) {
-                return allInstruments.get(i).getId();
+    @CrossOrigin
+    @RequestMapping(value = "/api/image/instrument/{id}")
+    public List<Image> getAllImagesByInstrumentId(@PathVariable(value = "id") Integer id) {
+        List<Image> allImages = imageService.getAllImages();
+        List<Image> returnList = new ArrayList<>();
+
+        for (int i = 0; i < allImages.size(); i++) {
+            if (allImages.get(i).getInstrumentId() == id) {
+                returnList.add(allImages.get(i));
+            }
+        }
+
+        return returnList;
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/api/image/renter/{id}")
+    public Image getAllImagesByRenterId(@PathVariable(value = "id") Integer id) {
+        List<Image> allImages = imageService.getAllImages();
+
+        for (int i = 0; i < allImages.size(); i++) {
+            if (allImages.get(i).getRenterId() == id) {
+                return allImages.get(i);
             }
         }
 
         return null;
     }
 
-    @CrossOrigin
-    @RequestMapping(value = "/api/image/{id}", method = RequestMethod.GET)
-    public Image getImage(@PathVariable(value = "id") Integer id) {
-        Image imageById = this.imageService.getImageById(id);
-        return imageById;
-    }
 
 
 
@@ -61,6 +78,26 @@ public class ImageController {
     @RequestMapping(method = RequestMethod.POST, value = "/api/image")
     public void addImage(@RequestBody byte[] bytes) throws IOException {
         Image image = new Image();
+        image.setImage(bytes);
+
+        imageService.addImage(image);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.POST, value = "/api/image/instrument/{id}")
+    public void addImageToInstrumentId(@PathVariable Integer id, @RequestBody byte[] bytes) throws IOException {
+        Image image = new Image();
+        image.setInstrumentId(id);
+        image.setImage(bytes);
+
+        imageService.addImage(image);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.POST, value = "/api/image/renter/{id}")
+    public void addImageToRenterId(@PathVariable Integer id, @RequestBody byte[] bytes) throws IOException {
+        Image image = new Image();
+        image.setRenterId(id);
         image.setImage(bytes);
 
         imageService.addImage(image);

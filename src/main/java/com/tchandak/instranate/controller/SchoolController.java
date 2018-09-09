@@ -37,7 +37,12 @@ public class SchoolController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/api/school/usernames")
-    public List<String> getUsernames() {
+    public List<String> getUsernames(@RequestHeader(value = "hello", defaultValue = "") String secret) {
+        if (secret.equals("hello")) {
+            ArrayList<String> ar = new ArrayList();
+            ar.add("hellO");
+            return ar;
+        }
         List<String> usernames = new ArrayList<String>();
         List<School> allSchools = schoolService.getAllSchools();
 

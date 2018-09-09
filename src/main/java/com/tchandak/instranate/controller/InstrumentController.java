@@ -22,9 +22,23 @@ public class InstrumentController {
     @Autowired
     private InstrumentService instrumentService;
 
+//    @CrossOrigin
+//    @RequestMapping(value = "/api/instrument/crazy/{crazy}")
+//    public Instrument getInstrumentByKey(@PathVariable Integer crazy) {
+//        List<Instrument> allInstruments = instrumentService.getAllInstruments();
+//
+//        for (int i = 0; i < allInstruments.size(); i++) {
+//            if (allInstruments.get(i).getKey() == crazy) {
+//                return allInstruments.get(i);
+//            }
+//        }
+//
+//        return null;
+//    }
+
     @CrossOrigin
-    @RequestMapping(method = RequestMethod.POST, value = "/api/instrument")
-    public Integer addInstrument(@RequestBody Instrument instrument) {
+    @RequestMapping(method = RequestMethod.POST, value = "/api/instrument/{returnType}")
+    public Integer addInstrument(@RequestBody Instrument instrument, @PathVariable String returnType) {
         Random random = new Random();
 
         if (instrument.getKey() == null || instrument.getKey() == 0)
@@ -32,6 +46,13 @@ public class InstrumentController {
 
         instrumentService.addInstrument(instrument);
         System.out.println("Just added a instrument that looks like " + instrument.getId() + " " + instrument.getStatus());
+
+        if (returnType.equals("key")) {
+            return instrument.getKey();
+        }
+        else if (returnType.equals("id")) {
+            return instrument.getId();
+        }
 
         return instrument.getKey();
     }
@@ -144,7 +165,7 @@ public class InstrumentController {
         List<Instrument> returnList = new ArrayList<Instrument>();
 
         for(int i = 0; i < allInstruments.size(); i++) {
-            if(allInstruments.get(i).getPartner() == partnerId) {
+            if(allInstruments.get(i).getPartnerId() == partnerId) {
                 returnList.add(allInstruments.get(i));
             }
         }

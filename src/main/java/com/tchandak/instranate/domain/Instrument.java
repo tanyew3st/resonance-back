@@ -76,10 +76,10 @@ public class Instrument {
     private String information;
 
     @Column(name = "partner_id")
-    private Integer partner;
+    private Integer partnerId;
 
     @Column(name = "last_worked")
-    private Integer lastWorked;
+    private String lastWorked;
 
     @Column(name = "serial_number")
     private String serialNumber;
@@ -118,11 +118,11 @@ public class Instrument {
         this.brokenParts = brokenParts;
     }
 
-    public Integer getLastWorked() {
+    public String getLastWorked() {
         return lastWorked;
     }
 
-    public void setLastWorked(Integer lastWorked) {
+    public void setLastWorked(String lastWorked) {
         this.lastWorked = lastWorked;
     }
 
@@ -166,12 +166,12 @@ public class Instrument {
         this.stickyKeys = stickyKeys;
     }
 
-    public Integer getPartner() {
-        return partner;
+    public Integer getPartnerId() {
+        return partnerId;
     }
 
-    public void setPartner(Integer partner) {
-        this.partner = partner;
+    public void setPartnerId(Integer partnerId) {
+        this.partnerId = partnerId;
     }
 
     public String getInformation() {

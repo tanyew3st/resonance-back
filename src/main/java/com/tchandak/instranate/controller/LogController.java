@@ -39,6 +39,12 @@ public class LogController {
     }
 
     @CrossOrigin
+    @RequestMapping(value = "/api/instrument/crazy/{crazyKey}")
+    public Integer getIdByCrazy(@PathVariable Integer crazyKey) {
+        return getIdByCrazyKey(crazyKey);
+    }
+
+    @CrossOrigin
     @RequestMapping(value = "/api/log/{id}", method = RequestMethod.GET)
     public List<Log> getLog(@PathVariable(value = "id") Integer crazyKey) {
         Integer id;

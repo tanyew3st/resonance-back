@@ -5,6 +5,7 @@ import com.tchandak.instranate.service.RenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,6 +17,21 @@ public class RenterController {
 
     @Autowired
     private RenterService renterService;
+
+    @CrossOrigin
+    @RequestMapping(value = "/api/renter/partner/{id}", method = RequestMethod.GET)
+    public List<Renter> getRentersByPartnerId(@PathVariable(value = "id") Integer id) {
+        List<Renter> allRenters = renterService.getAllRenters();
+        List<Renter> returnList = new ArrayList<>();
+
+        for (int i = 0; i < allRenters.size(); i++) {
+            if (allRenters.get(i).getPartnerId() == id) {
+                returnList.add(allRenters.get(i));
+            }
+        }
+
+        return returnList;
+    }
 
     @CrossOrigin
     @RequestMapping(value = "/api/renter/{id}", method = RequestMethod.GET)
